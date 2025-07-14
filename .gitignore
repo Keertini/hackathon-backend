@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+caterpillar-venv/
+
+# Environment variables
+.env
+
+# macOS (if using Mac)
+.DS_Store
