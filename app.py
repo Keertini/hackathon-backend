@@ -7,7 +7,10 @@ from google import generativeai as genai
 
 # Flask app
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=[
+    "https://hackathon-frontend-delta-six.vercel.app",
+    "http://localhost:3000"
+])
 
 # MongoDB setup
 client = MongoClient(config.MONGO_URI)
