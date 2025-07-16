@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from urllib.parse import quote_plus
 from google import generativeai as genai
+import cohere
 
 # Load .env
 load_dotenv()
@@ -26,3 +27,11 @@ if not GOOGLE_API_KEY:
 
 # Configure Gemini
 genai.configure(api_key=GOOGLE_API_KEY)
+
+# Cohere API Key
+COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+if not COHERE_API_KEY:
+    raise ValueError("COHERE_API_KEY must be set in .env")
+
+# Create Cohere client instance
+cohere_client = cohere.Client(COHERE_API_KEY)
