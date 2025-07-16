@@ -3,25 +3,29 @@ from flask_cors import CORS
 from pymongo import MongoClient
 import config
 
-# Route Blueprints
 from routes.users import users_bp
 from routes.llms import llm_bp
-from routes.tables import tables_bp 
+from routes.tables import tables_bp
 
 app = Flask(__name__)
-CORS(app, origins=[
-    "https://hackathon-frontend-delta-six.vercel.app",
-    "http://localhost:3000"
-])
 
-# MongoDB setup
+CORS(
+    app,
+    origins=[
+        "https://hackathon-frontend-delta-six.vercel.app",
+        "http://localhost:3000"
+    ],
+    supports_credentials=True,
+    methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"]
+)
+
 client = MongoClient(config.MONGO_URI)
 db = client["caterpillar"]
 
-# Register Blueprints
 app.register_blueprint(users_bp, url_prefix="/api")
 app.register_blueprint(llm_bp, url_prefix="/api")
-app.register_blueprint(tables_bp, url_prefix="/api")  # Optional
+app.register_blueprint(tables_bp, url_prefix="/api")
 
 @app.route("/")
 def home():
