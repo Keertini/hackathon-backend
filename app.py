@@ -6,6 +6,7 @@ import config
 from routes.users import users_bp
 from routes.llms import llm_bp
 from routes.tables import tables_bp
+from routes.history import history_bp
 
 app = Flask(__name__)
 
@@ -22,10 +23,12 @@ CORS(
 
 client = MongoClient(config.MONGO_URI)
 db = client["caterpillar"]
+app.config["history"] = db
 
 app.register_blueprint(users_bp, url_prefix="/api")
 app.register_blueprint(llm_bp, url_prefix="/api")
 app.register_blueprint(tables_bp, url_prefix="/api")
+app.register_blueprint(history_bp, url_prefix="/api")
 
 @app.route("/")
 def home():
