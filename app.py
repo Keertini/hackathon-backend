@@ -11,6 +11,7 @@ from routes.dashboard import dashboard_bp
 from routes.user_tasks import user_tasks_bp
 from routes.weather import weather_bp
 from routes.incident import incident_bp
+from routes.behavior import behavior_bp
 
 
 app = Flask(__name__)
@@ -38,6 +39,7 @@ app.register_blueprint(dashboard_bp, url_prefix="/api")
 app.register_blueprint(user_tasks_bp, url_prefix="/api")
 app.register_blueprint(weather_bp, url_prefix="/api")
 app.register_blueprint(incident_bp, url_prefix="/api")
+app.register_blueprint(behavior_bp, url_prefix="/api")
 
 @app.route("/")
 def home():
