@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 import bcrypt
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 import config
 
 client = MongoClient(config.MONGO_URI)
@@ -31,6 +32,7 @@ def signup():
     print("✅ User created with ID:", user_id)
     return jsonify({"success": True, "message": "User created successfully"}), 201
 
+
 @users_bp.route("/login", methods=["POST"])
 def login():
     data = request.json
@@ -48,4 +50,9 @@ def login():
     if not bcrypt.checkpw(password.encode("utf-8"), stored_hash):
         return jsonify({"success": False, "error": "Invalid username or password"}), 401
 
-    return jsonify({"success": True, "message": "Login successful"}), 200
+    return jsonify({
+        "success": True,
+        "message": "Login successful",
+        "user_id": str(user["_id"]),
+        "username": user["username"]
+    }), 200

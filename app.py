@@ -7,7 +7,10 @@ from routes.users import users_bp
 from routes.llms import llm_bp
 from routes.tables import tables_bp
 from routes.history import history_bp
+from routes.dashboard import dashboard_bp
+from routes.user_tasks import user_tasks_bp
 from routes.weather import weather_bp
+
 
 app = Flask(__name__)
 
@@ -18,7 +21,7 @@ CORS(
         "http://localhost:3000"
     ],
     supports_credentials=True,
-    methods=["GET", "POST", "OPTIONS"],
+    methods=["GET", "POST", "OPTIONS", "PUT"],
     allow_headers=["Content-Type", "Authorization"]
 )
 
@@ -30,6 +33,8 @@ app.register_blueprint(users_bp, url_prefix="/api")
 app.register_blueprint(llm_bp, url_prefix="/api")
 app.register_blueprint(tables_bp, url_prefix="/api")
 app.register_blueprint(history_bp, url_prefix="/api")
+app.register_blueprint(dashboard_bp, url_prefix="/api")
+app.register_blueprint(user_tasks_bp, url_prefix="/api")
 app.register_blueprint(weather_bp, url_prefix="/api")
 
 @app.route("/")
