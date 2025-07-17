@@ -10,6 +10,7 @@ from routes.history import history_bp
 from routes.dashboard import dashboard_bp
 from routes.user_tasks import user_tasks_bp
 from routes.weather import weather_bp
+from routes.incident import incident_bp
 from ml.predict import predict_bp
 
 
@@ -37,6 +38,7 @@ app.register_blueprint(history_bp, url_prefix="/api")
 app.register_blueprint(dashboard_bp, url_prefix="/api")
 app.register_blueprint(user_tasks_bp, url_prefix="/api")
 app.register_blueprint(weather_bp, url_prefix="/api")
+app.register_blueprint(incident_bp, url_prefix="/api")
 app.register_blueprint(predict_bp, url_prefix="/api")
 
 
