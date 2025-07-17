@@ -7,6 +7,8 @@ from routes.users import users_bp
 from routes.llms import llm_bp
 from routes.tables import tables_bp
 from routes.history import history_bp
+from routes.security import security_bp
+from routes.proximity import proximity_bp
 
 app = Flask(__name__)
 
@@ -29,6 +31,8 @@ app.register_blueprint(users_bp, url_prefix="/api")
 app.register_blueprint(llm_bp, url_prefix="/api")
 app.register_blueprint(tables_bp, url_prefix="/api")
 app.register_blueprint(history_bp, url_prefix="/api")
+app.register_blueprint(security_bp, url_prefix="/api")
+app.register_blueprint(proximity_bp, url_prefix="/api")
 
 @app.route("/")
 def home():
