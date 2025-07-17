@@ -35,3 +35,5 @@ if not COHERE_API_KEY:
 
 # Create Cohere client instance
 cohere_client = cohere.Client(COHERE_API_KEY)
+
+OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
